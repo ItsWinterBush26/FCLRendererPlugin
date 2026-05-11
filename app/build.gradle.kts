@@ -22,7 +22,7 @@ android {
         configureEach {
             //应用名
             //app name
-            resValue("string","app_name","LTW Renderer")
+            resValue("string","app_name","LTW)
             //包名后缀
             //package name Suffix
             applicationIdSuffix = ".ltw"
@@ -32,7 +32,7 @@ android {
             manifestPlaceholders["des"] = "LTW (1.17+)"
             //渲染器的具体定义 格式为 名称:渲染器库名:EGL库名 例如 LTW:libltw.so:libltw.so
             //The specific definition format of a renderer is ${name}:${renderer library name}:${EGL library name}, for example:   LTW:libltw.so:libltw.so
-            manifestPlaceholders["renderer"] = "LTW:libltw.so:/libltw.so"
+            manifestPlaceholders["renderer"] = "LTW:libltw.so:libltw.so"
 
             manifestPlaceholders["boatEnv"] = mutableMapOf<String,String>().apply {
                 put("LIBGL_ES","3")
@@ -46,6 +46,9 @@ android {
 
             manifestPlaceholders["pojavEnv"] = mutableMapOf<String,String>().apply {
                 put("LIBGL_ES", "3")
+                put("POJAV_RENDERER", "opengles3")
+				put("POJAVEXEC_EGL", "libltw.so")
+				put("LIBGL_EGL", "libltw.so")
             
             }.run {
                 var env = ""
