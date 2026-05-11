@@ -1,3 +1,6 @@
 [submodule "LTW"]
 	path = LTW
 	url = https://github.com/MojoLauncher/LTW.git
+[submodule "external/LTW"]
+	path = external/LTW
+	url = https://github.com/MojoLauncher/LTW.git
