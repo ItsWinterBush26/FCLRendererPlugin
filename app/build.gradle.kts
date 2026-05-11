@@ -22,10 +22,10 @@ android {
         configureEach {
             //应用名
             //app name
-            resValue("string","app_name","XXX Renderer")
+            resValue("string","app_name","LTW Renderer")
             //包名后缀
             //package name Suffix
-            applicationIdSuffix = ".xxx"
+            applicationIdSuffix = ".ltw"
 
             //渲染器在启动器内显示的名称
             //The name displayed by the renderer in the launcher
@@ -78,4 +78,5 @@ android {
 }
 
 dependencies {
+    implementation(project(":LTW"))
 }
