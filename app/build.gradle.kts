@@ -25,14 +25,14 @@ android {
             resValue("string","app_name","LTW Renderer")
             //包名后缀
             //package name Suffix
-            applicationIdSuffix = ".ltw"
+            applicationIdSuffix = ".ltwforaero"
 
             //渲染器在启动器内显示的名称
             //The name displayed by the renderer in the launcher
-            manifestPlaceholders["des"] = ""
+            manifestPlaceholders["des"] = "LTW Renderer 1.17+ ItsWinterBush"
             //渲染器的具体定义 格式为 名称:渲染器库名:EGL库名 例如 LTW:libltw.so:libltw.so
             //The specific definition format of a renderer is ${name}:${renderer library name}:${EGL library name}, for example:   LTW:libltw.so:libltw.so
-            manifestPlaceholders["renderer"] = ""
+            manifestPlaceholders["renderer"] = "LTW:libltw.so"
 
             //特殊Env
             //Special Env
@@ -41,7 +41,7 @@ android {
             //如果有多个库,可以使用","隔开,例如  DLOPEN=libxxx.so,libyyy.so
             //If there are multiple libraries, you can use "," to separate them, for example  DLOPEN=libxxx.so,libyyy.so
             manifestPlaceholders["boatEnv"] = mutableMapOf<String,String>().apply {
-
+put("LIBGL_ES", "3")
             }.run {
                 var env = ""
                 forEach { (key, value) ->
@@ -51,7 +51,7 @@ android {
             }
 
             manifestPlaceholders["pojavEnv"] = mutableMapOf<String,String>().apply {
-
+put("LIBGL_ES", "3")
             }.run {
                 var env = ""
                 forEach { (key, value) ->
@@ -62,10 +62,10 @@ android {
 
             //最小支持的MC版本
             //The minimum supported MC version
-            manifestPlaceholders["minMCVer"] = ""
+            manifestPlaceholders["minMCVer"] = "1.17"
             //最大支持的MC版本
             //The maximum supported MC version
-            manifestPlaceholders["maxMCVer"] = ""
+            manifestPlaceholders["maxMCVer"] = "26.11+"
         }
     }
     compileOptions {
