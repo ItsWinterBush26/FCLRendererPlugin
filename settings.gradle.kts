@@ -22,3 +22,6 @@ dependencyResolutionManagement {
 rootProject.name = "FCLRendererPlugin"
 include(":app")
 include(":LTW")
+
+project(":LTW").projectDir =
+    file("external/LTW/ltw")
