@@ -18,40 +18,43 @@ android {
         versionCode = 45
         versionName = "Release 2026"
 
-        manifestPlaceholders["des"] = "LTW Renderer (OpenGL 3.1+)"
-        manifestPlaceholders["renderer"] = "LTW:libltw.so:libEGL.so"
-        manifestPlaceholders["boatEnv"] = mutableMapOf<String, String>().apply {
-            put("LIBGL_USE_MC_COLOR", "1")
-            put("LIBGL_GL", "31")
-            put("LIBGL_ES", "3")
-            put("LIBGL_NORMALIZE", "1")
-            put("LIBGL_NOERROR", "1")
-        }.run {
-            var env = ""
-            forEach { (key, value) ->
-                env += "$key=$value:"
-            }
-            env.dropLast(1)
+        ndk {
+            abiFilters += "arm64-v8a"
         }
+
+        manifestPlaceholders["des"] =
+            "LTW Renderer (OpenGL 3.1+)"
+
+        // safer than libEGL.so
+        manifestPlaceholders["renderer"] =
+            "LTW:libltw.so:libltw.so"
+
+        manifestPlaceholders["boatEnv"] =
+            "LIBGL_USE_MC_COLOR=1:" +
+            "LIBGL_GL=31:" +
+            "LIBGL_ES=3:" +
+            "LIBGL_NORMALIZE=1:" +
+            "LIBGL_NOERROR=1"
+
         manifestPlaceholders["pojavEnv"] =
-            manifestPlaceholders["boatEnv"] as String +
-                    (mutableMapOf<String, String>().apply {
-                        put("POJAV_RENDERER", "opengles3")
-                    }.run {
-                        var env = ":"
-                        forEach { (key, value) ->
-                            env += "$key=$value:"
-                        }
-                        env.dropLast(1)
-                    })
+            "LIBGL_USE_MC_COLOR=1:" +
+            "LIBGL_GL=31:" +
+            "LIBGL_ES=3:" +
+            "LIBGL_NORMALIZE=1:" +
+            "LIBGL_NOERROR=1:" +
+            "POJAV_RENDERER=opengles3"
     }
 
     buildTypes {
+
+        debug {
+            resValue("string", "app_name", "LTW Renderer")
+        }
+
         release {
             isMinifyEnabled = false
-        }
-        configureEach {
-            resValue("string", "app_name", "LTW Renderer)
+
+            resValue("string", "app_name", "LTW Renderer")
         }
     }
 
@@ -59,6 +62,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
